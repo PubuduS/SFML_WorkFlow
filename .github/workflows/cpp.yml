@@ -11,13 +11,18 @@ jobs:
       matrix:
         config:
         - {
-            name: "Ubuntu Latest GCC", artifact: "Linux.tar.xz",
+            name: "Ubuntu Latest GCC", artifact: "Ubuntu_Latest.tar.xz",
             os: ubuntu-latest,
             build_type: "Release", cc: "gcc", cxx: "g++"
           }
 
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout Code 
+      uses: actions/checkout@v2
+
+    - name: Install Linux Dependencies
+      if: runner.os == 'Linux'
+      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
 
     - name: Download Ninja and CMake
       id: cmake_and_ninja
@@ -177,7 +182,7 @@ jobs:
       matrix:
         config:
         - {
-            name: "Ubuntu Latest GCC", artifact: "Linux.tar.xz",
+            name: "Ubuntu Latest GCC", artifact: "Ubuntu_Latest.tar.xz",
             os: ubuntu-latest
           }
 
