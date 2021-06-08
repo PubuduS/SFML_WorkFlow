@@ -18,3 +18,5 @@ find_package (SFML REQUIRED system window graphics network audio)
 # We add the executable of the program
 add_executable (main ${SOURCE_FILES})
 target_link_libraries(main PUBLIC sfml-system sfml-window sfml-graphics)
+
+install(TARGETS main)
