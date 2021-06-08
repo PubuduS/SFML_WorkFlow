@@ -17,12 +17,16 @@ jobs:
           }
 
     steps:
-    - name: Checkout Code 
+    - name: Checkout Code
       uses: actions/checkout@v2
 
-    - name: Install Linux Dependencies
+    - name: Install Linux Dependencies for SFML
       if: runner.os == 'Linux'
       run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
+
+    - name: Install SFML
+      if: runner.os == 'Linux'
+      run: sudo apt-get install libsfml-dev
 
     - name: Download Ninja and CMake
       id: cmake_and_ninja
